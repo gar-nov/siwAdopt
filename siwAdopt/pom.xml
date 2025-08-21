@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>it.uniroma3</groupId>
-    <artifactId>siwBeach</artifactId>
+    <artifactId>siwAdopt</artifactId>
     <version>1.0</version>
-    <name>siwBeach</name>
+    <name>siwAdopt</name>
     <description>Siw projects</description>
 
     <properties>
