@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SiwAdoptApplication {
 	
+	// test commit
 	public static void main(String[] args) {
 		SpringApplication.run(SiwAdoptApplication.class, args);
 	}
