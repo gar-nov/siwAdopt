@@ -3,10 +3,12 @@ package it.uniroma3.siw.model;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -24,7 +26,9 @@ public class Categoria {
 	    private String descrizione;
 
 	   
+	    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	    private List<Animale> animali;
+
 
 	    // GETTER & SETTER
 	    public Long getId() {
