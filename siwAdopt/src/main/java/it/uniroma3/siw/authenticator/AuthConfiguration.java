@@ -66,5 +66,6 @@ public class AuthConfiguration {
                 .deleteCookies("JSESSIONID")
             );
         return http.build();
+        //return
     }
 }
