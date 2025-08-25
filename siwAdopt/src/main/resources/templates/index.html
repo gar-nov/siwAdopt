@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+    <title>AdoptMe</title>
+  
+     <link rel="stylesheet" href="/css/stile.css"> 
+  </head>
+  
+  <body>
+	  <p sec:authorize="isAuthenticated()">
+    Utente autenticato: <span sec:authentication="principal.username">Nessun utente autenticato</span>
+</p>
+<p sec:authorize="isAuthenticated()">
+    Ruoli utente: <span sec:authentication="principal.authorities">Nessun ruolo trovato</span>
+</p>
+
+<p sec:authorize="isAnonymous()">
+    Nessun utente autenticato.
+</p>
+
+<header class="navbar">
+  <div class="navbar-content">
+    <!-- Logo a sinistra -->
+    <div class="logo">
+      <h1>Logo</h1>
+    </div>
+
+    <!-- Sezione destra con Accedi e altro elemento -->
+    <div class="navbar-right">
+      <a href="/login" class="navbar-link">Accedi</a>
+      <a href="/register" class="navbar-link">Registrati</a>
+    </div>
+  </div>
+</header>
+
+
+<div class="container">
+
+
+  <div class="left-side">
+   
+    <div class="step">
+      <div class="icon-circle">
+          <img src="images/logo/Ombrellone.png" alt="Icona posizione">
+      </div>
+      <div class="step-content">
+        <h3>Scopri gli animali in cerca di casa</h3>
+        
+      </div>
+   </div>
+
+  <div class="step">
+    <div class="icon-circle">
+      <img src="images/logo/Lettino.png" alt="Icona ombrellone">
+    </div>
+    <div class="step-content">
+      <h3>Scegli il tuo amico a quattro zampe</h3>
+      
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="icon-circle">
+      <img src="images/logo/Check.png" alt="Icona pagamento">
+    </div>
+    <div class="step-content">
+      <h3>Contatta per adottare con facilità</h3>
+      
+    </div>
+  </div> 
+  
+ 
+
+  <!--pulsante scopri -->
+   <a href="/beach?from=index" class="default-box">
+         <div class="default-value">
+                    Default value
+         </div>
+   </a>
+
+ </div>
+
+ <!-- fine div left side -->
+ 
+  <div class="right-side">
+    
+     <div class="image-row">
+      <div class="half-width-img">
+        <img src="images/beach-background2.jpg" alt="Image 1">
+      </div>
+      <div class="full-width-img">
+        <img src="images/spiaggia-sperlonga-3.jpg" alt="Image 2">
+      </div>
+      <div class="half-width-img">
+        <img src="images/beach-background.jpg" alt="Image 3">
+      </div>
+    </div>
+    
+    <div class="image-row">
+      <div class="full-img">
+        <img src="images/beach-background4.jpg" alt="Image 4">
+      </div>
+      <div class="full-img">
+        <img src="images/beach-background5.jpg" alt="Image 5">
+      </div>
+    </div>
+ 
+  </div>
+  <!-- fine div right side -->
+ </div>
+
+    
+    
+    
+    <div th:insert="~{fragments/base.html :: footer}"></div>
+  
+
+
+  </body>
+</html>
