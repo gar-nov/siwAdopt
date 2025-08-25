@@ -1,0 +1,321 @@
+html, body {
+  height: 100vh;  /* Altezza viewport */
+  overflow: hidden; /* Niente scroll */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column; /* Dispone gli elementi verticalmente (navbar, container, footer) */
+}
+.navbar {
+  height: 35px; /* Altezza della navbar, puoi modificarla a piacimento */
+  background-color: lightgray;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  overflow: hidden; /* evita scroll interni */
+}
+/*rendere fisso la pagina index.html*/
+:root {
+  --nav-h: 40px;
+  --foot-h: 40px;
+}
+
+/***************************NAVBAR-LOGO-ACCEDI-REGISTRATI***************************/
+
+/***Logo indexUser ***/
+
+/* Per i bottoni nella navbar user */
+.navbar-link.btn-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #FFD19A;
+  background-color: #FFEBCD;
+  color: #C58940;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.navbar-link.btn-nav:hover {
+  background-color: #FFD19A;
+}
+
+
+/* Logo nella navbar dell'index */
+.navbar .logo img {
+  height: 110px;       /* regola grandezza del logo */
+  width: auto;
+  display: block;
+  margin-top: -32px;
+  margin-left: -20px;
+}
+
+
+
+/* Stile generale per la navbar */
+.navbar {
+  background-color: #FFEBCD; /* Colore di sfondo */
+  padding: 10px 30px; /* Spaziatura interna */
+   height: 40px;
+}
+
+/* Contenitore principale della navbar */
+.navbar-content {
+  display: flex; /* Applica Flexbox */
+  justify-content: space-between; /* Logo a sinistra, link a destra */
+  align-items: center; /* Allinea verticalmente */
+}
+
+
+
+.navbar-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;   /* allineamento verticale */
+  margin-top: -30px; /* alza i pulsanti */
+}
+
+
+/* Stile per i link */
+.navbar-link {
+  text-decoration: none; /* Rimuove la sottolineatura */
+  color: black; /* Colore del testo */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.navbar-link:hover {
+  color: #d2691e; /* Colore al passaggio del mouse */
+}
+
+/* Bottoni Accedi/Registrati */
+.navbar-right .btn-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 2px solid #FFD19A;
+  background-color: #FFEBCD;
+  padding: 10px 20px;
+  color: black;
+  border-radius: 5px;
+  font-weight: bold;
+  width: auto;      /* niente larghezza fissa */
+  margin: 0;        /* niente margine sinistro */
+}
+
+.navbar-right .btn-nav:hover {
+  background-color: #FFD19A;
+}
+
+
+
+
+/* Header della pagina di registrazione (isolato) */
+.register-navbar {
+  background-color: #FFEBCD;
+  
+}
+
+.register-navbar .navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* logo a sinistra */
+  padding: 10px 20px;
+}
+
+.register-navbar .logo {
+  height: 110px;       /* regola grandezza del logo */
+  width: auto;
+  display: block;
+  margin-top: -42px;
+  margin-left: -40px;
+}
+
+.register-navbar .logo-link {
+  display: inline-flex; /* per avere un’area clic più comoda */
+  align-items: center;
+}
+
+
+/**** pulsante accedi logo a sinistra stile ****/
+
+.login-navbar {
+  background-color: #FFEBCD;
+  height: 65px;
+
+}
+
+
+.login-navbar .logo img {
+  height: 110px;  /* grandezza del logo */
+  width: auto;
+  display: block;
+  margin-top: -18px;
+  margin-left: 10px;
+}
+
+
+
+/***************************LEFT-PART-HOW-TO-USE***************************/
+
+.left-side {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  background-color: #F7F7F8;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px; /* Spazio tra gli step */
+  margin-left: 40px;
+  position: relative;
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #FFEBCD; /* Colore sfondo icona */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  flex-shrink: 0; /* Mantiene la dimensione dell'icona fissa */
+}
+
+.icon-circle img {
+  width: 44px;
+  height: 44px;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+p {
+  font-size: 14px;
+  margin: 0;
+  color: #666;
+}
+
+/* Linea verticale tra le icone */
+.step::before {
+  content: '';
+  position: absolute;
+  left: 30px; /* Posizionato al centro delle icone */
+  top: 60px; /* Inizia appena sotto l'icona */
+  bottom: -40px; /* Estendilo fino al prossimo step */
+  width: 2px;
+  background-color: #ccc;
+}
+
+/* Rimuovi la linea per l'ultimo .step (non considera il bottone) */
+.left-side .step:last-of-type::before {
+  display: none;
+}
+
+
+/*********************************PULSANTE SCOPRI****************************/
+
+.default-box {
+    display: flex;
+    text-decoration: none;
+    border: 2px solid #FFD19A; /* Colore bordo */
+    background-color: #FFEBCD;
+    padding: 10px 20px;
+    color: #C58940; /* Colore testo */
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 70px;
+    width: 63%;
+}
+
+.default-box:hover {
+    background-color: #FFD19A;
+   
+}
+
+/*********************************PARTE-DESTRA****************************/
+
+.right-side {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px; /* Spazio tra le righe di immagini */
+}
+
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  height: 50%; /* Ogni riga occupa metà dell'altezza del container */
+  gap: 10px; /* Spazio tra le immagini */
+}
+
+.half-width-img, .full-img {
+  flex: 1; /* Le immagini ai lati nella prima riga e le immagini della seconda riga occupano 1 parte dello spazio orizzontale */
+}
+
+.full-width-img {
+  flex: 2; /* L'immagine centrale occupa il doppio dello spazio rispetto alle immagini laterali */
+}
+
+img {
+  width: 100%;
+  height: 100%; /* Tutte le immagini riempiono lo spazio disponibile */
+  object-fit: cover; /* Assicura che le immagini non si deformino */
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/****** FOOTER PART ************/
+
+
+.foot {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #FFEBCD
+}
+.foot:hover {
+ opacity: 1;
+ color: var(--color1);
+ background-color: var(--color2);
+}
+
+
+
