@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Area</title>
+  
+
+    <link rel="stylesheet" href="/css/stile.css"> 
+</head>
+
+
+<body>
+	
+	<header class="navbar">
+  <div class="navbar-content">
+    <!-- Logo a sinistra -->
+    <div class="logo">
+      <h1>Logo</h1>
+    </div>  
+   </header>
+  <div class="grid-container-form-parent">
+	<div class="grid-container-form">
+		<div class="grid-form">
+			<div class="flex title">accedi al tuo account
+			</div>
+			<form th:action="@{/login}" method="POST">
+				<table>
+					<tr>
+						<td>username:
+						</td>
+						<td><input name="username" type="text" required />
+						</td>
+					</tr>
+					<tr>
+						<td>password:
+						</td>
+						<td><input name="password" type="password" required />
+						</td>
+					</tr>
+				</table>
+				<div>
+					<button class="button" type="submit">entra</button>
+				</div>
+				<div>
+					<h3><span>non hai un'account?</span></h3>
+					<a class="button" href="formRegisterUser.html" th:href="@{/register}">registrati</a></p>
+					</h3>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</div>
+
+	<div th:insert="~{fragments/base.html :: footer}">
+	</div>
+	
+
+
+</body>
+</html>
