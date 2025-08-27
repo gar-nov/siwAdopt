@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import it.uniroma3.siw.model.Animale;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.AnimaleRepository;
 
 @Service
@@ -21,4 +22,9 @@ public class AnimaleService {
 
 		return animali;
 	}
+    
+    public List<Animale> findByUser(User user) {
+        return animaleRepository.findByUser(user);
+    }
+
 }

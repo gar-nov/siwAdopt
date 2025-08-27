@@ -67,7 +67,7 @@ body {
 
 
 
-
+/* css accedi e registrati */
 .navbar-link {
   display: flex;
   align-items: center;
@@ -91,25 +91,7 @@ body {
 
 
 
-/* Bottoni Accedi/Registrati */
-.navbar-right .btn-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  border: 2px solid #FFD19A;
-  background-color: #FFEBCD;
-  padding: 10px 20px;
-  color: black;
-  border-radius: 5px;
-  font-weight: bold;
-  width: auto;      /* niente larghezza fissa */
-  margin: 0;        /* niente margine sinistro */
-}
 
-.navbar-right .btn-nav:hover {
-  background-color: #FFD19A;
-}
 
 
 
@@ -311,6 +293,75 @@ img {
 
 
 
+
+
+/*********************************[user]myAnimals.html****************************/
+body.my-animals-page {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  background: white;
+}
+
+.animals-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(600px, 50vw);
+  max-height: calc(95vh - 48px);
+  overflow: hidden;
+  margin: 10px auto 0 var(--right-gap, 380px);
+  padding: 30px;
+  text-align: center;
+  background: #ffeccb;
+  border: 3px solid #f5c388;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
+}
+
+.animals-wrapper > h1 {
+  margin: 0 0 8px;
+  color: #2d7a2d;
+}
+
+.animals-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: .25rem;
+  scrollbar-gutter: stable both-edges;
+}
+
+.animals-wrapper ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.animals-wrapper li {
+  background: #fffaf2;
+  border: 1px solid #f5c388;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.animals-wrapper > a {
+  align-self: center;
+  display: inline-block;
+  padding: 12px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  background: #FFEBCD;
+  border-radius: 12px;
+  transition: background-color .3s;
+}
+.animals-wrapper > a:hover {
+  background: #FFD19A;
+  cursor: pointer;
+}
 
 
 
