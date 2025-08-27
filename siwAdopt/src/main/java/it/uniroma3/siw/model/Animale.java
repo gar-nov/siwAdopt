@@ -25,6 +25,9 @@ public class Animale {
     private String nome;
     
     @NotBlank
+    private String genere;
+    
+    @NotBlank
     private String razza;
     
     @NotNull
@@ -130,6 +133,16 @@ public class Animale {
     public void setUser(User user) {
         this.user = user;
     }
+    
+ 
+    public String getGenere() {
+        return genere;
+    }
+
+    
+    public void setGenere(String genere) {
+        this.genere = genere;
+    }
 
     /** Percorso immagine come in Prodotto (adattato ad Animale). */
     public String getFotoImagePath() {
@@ -141,7 +154,7 @@ public class Animale {
     // HASHCODE & EQUALS
     @Override
     public int hashCode() {
-        return Objects.hash(categoria, descrizione, foto, nome, razza, eta);
+        return Objects.hash(categoria, descrizione, foto, nome, razza, eta,genere);
     }
 
     @Override
@@ -156,6 +169,7 @@ public class Animale {
                 && Objects.equals(this.foto, other.foto)
                 && Objects.equals(this.nome, other.nome)
                 && Objects.equals(this.razza, other.razza)
-                && Objects.equals(this.eta, other.eta);
+                && Objects.equals(this.eta, other.eta)
+                && Objects.equals(this.genere, other.genere);
     }
 }

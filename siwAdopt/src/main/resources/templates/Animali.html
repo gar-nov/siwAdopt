@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista degli Animali</title>
+    <link rel="stylesheet" href="/css/stile.css">
+</head>
+
+<body class="animals-page">
+    <div class="page-wrapper">
+        <div class="sticky-header">
+            <div class="header-left">
+                <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <button class="back-button" onclick="window.location.href='/indexAdmin'">
+                        &larr; Torna Indietro
+                    </button>
+                </div>
+                <div sec:authorize="isAuthenticated() and !hasAuthority('ROLE_ADMIN')">
+                    <button class="back-button" onclick="window.location.href='/user/indexU'">
+                        &larr; Torna Indietro
+                    </button>
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <button class="back-button" onclick="window.location.href='/'">
+                        &larr; Torna Indietro
+                    </button>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <h1>Animali Disponibili</h1>
+            </div>
+
+            <div class="header-right" sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <a href="/admin/animale/new">
+                    <button class="add-beach-button">+ Aggiungi Animale</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="container">
+            <ul>
+                <li th:each="animale : ${animali}">
+                    <div class="image-wrapper">
+                        <!-- Se vuoi aggiungere un'immagine dell'animale -->
+                        <img th:if="${animale.imagePath}"
+                             th:src="@{${animale.imagePath}(v=${#dates.createNow().time})}"
+                             alt="Immagine Animale">
+                        <img th:unless="${animale.imagePath}"
+                             src="/images/placeholder-animal.jpg"
+                             alt="Immagine non disponibile">
+                    </div>
+
+                    <div class="content-wrapper">
+                        <h2 th:text="${animale.nome}">Nome</h2>
+                        <p><b>Genere:</b> <span th:text="${animale.genere}">Genere</span></p>
+                        <p><b>Età:</b> <span th:text="${animale.eta}">Età</span> anni</p>
+
+                        <div class="actions">
+                            <a class="btn btn--primary" th:href="@{'/animale/' + ${animale.id}}">
+                                Scopri di più &rarr;
+                            </a>
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
