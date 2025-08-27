@@ -28,34 +28,15 @@ body {
 
 /***************************NAVBAR-LOGO-ACCEDI-REGISTRATI***************************/
 
-/***Logo indexUser ***/
-
-/* Per i bottoni nella navbar user */
-.navbar-link.btn-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #FFD19A;
-  background-color: #FFEBCD;
-  color: #C58940;
-  font-weight: bold;
-  padding: 6px 14px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.navbar-link.btn-nav:hover {
-  background-color: #FFD19A;
-}
 
 
 /* Logo nella navbar dell'index */
 .navbar .logo img {
-  height: 110px;       /* regola grandezza del logo */
-  width: auto;
+  height: 130px;       /* regola grandezza del logo */
+  width: 130px;
   display: block;
-  margin-top: -32px;
-  margin-left: -20px;
+  margin-top: -40px;
+  margin-left: -40px;
 }
 
 
@@ -76,6 +57,7 @@ body {
 
 
 
+
 .navbar-right {
   display: flex;
   gap: 20px;
@@ -84,17 +66,30 @@ body {
 }
 
 
-/* Stile per i link */
+
+
 .navbar-link {
-  text-decoration: none; /* Rimuove la sottolineatura */
-  color: black; /* Colore del testo */
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 2px solid #FFD19A;
+  background-color: #FFEBCD;
+  padding: 10px 20px;
+  color: #C58940;
+  border-radius: 5px;
   font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: -18px;
+
 }
 
 .navbar-link:hover {
-  color: #d2691e; /* Colore al passaggio del mouse */
+  background-color: #FFD19A;
 }
+
+
 
 /* Bottoni Accedi/Registrati */
 .navbar-right .btn-nav {
@@ -186,21 +181,40 @@ body {
 }
 
 .icon-circle {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
-  background-color: #FFEBCD; /* Colore sfondo icona */
+  background-color: #FFEBCD;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 15px;
-  flex-shrink: 0; /* Mantiene la dimensione dell'icona fissa */
+  overflow: hidden;
 }
 
-.icon-circle img {
-  width: 44px;
-  height: 44px;
+/* Immagine 1 - più stretta */
+.icona-1 img {
+  width: 250%;
+  height: 200%;
 }
+
+/* Immagine 2 - più larga */
+.icona-2 img {
+  width: 380%;
+  height: 310%;
+  margin-top: 65px;
+}
+
+/* Immagine 3 - più alta */
+.icona-3 img {
+   width: 380%;
+  height: 310%;
+  margin-left: 5px;
+  margin-top: 10px;
+
+}
+
+
 
 .step-content {
   display: flex;
@@ -250,7 +264,11 @@ p {
     text-align: center;
     font-weight: bold;
     margin-left: 70px;
-    width: 63%;
+    width: 40%;
+}
+
+.default-value {
+ margin-left: 50px;
 }
 
 .default-box:hover {
