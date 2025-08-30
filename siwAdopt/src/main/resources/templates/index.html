@@ -8,7 +8,8 @@
      <link rel="stylesheet" href="/css/stile.css"> 
   </head>
   
-  <body>
+  <body class="index-page">
+
 	  <p sec:authorize="isAuthenticated()">
     Utente autenticato: <span sec:authentication="principal.username">Nessun utente autenticato</span>
 </p>

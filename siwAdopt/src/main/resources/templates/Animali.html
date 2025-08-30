@@ -12,17 +12,17 @@
         <div class="sticky-header">
             <div class="header-left">
                 <div sec:authorize="hasAuthority('ROLE_ADMIN')">
-                    <button class="back-button" onclick="window.location.href='/indexAdmin'">
+                    <button class="navbar-link" onclick="window.location.href='/indexAdmin'">
                         &larr; Torna Indietro
                     </button>
                 </div>
                 <div sec:authorize="isAuthenticated() and !hasAuthority('ROLE_ADMIN')">
-                    <button class="back-button" onclick="window.location.href='/user/indexU'">
+                    <button class="navbar-link" onclick="window.location.href='/user/indexU'">
                         &larr; Torna Indietro
                     </button>
                 </div>
                 <div sec:authorize="isAnonymous()">
-                    <button class="back-button" onclick="window.location.href='/'">
+                    <button class="navbar-link" onclick="window.location.href='/'">
                         &larr; Torna Indietro
                     </button>
                 </div>
@@ -30,43 +30,44 @@
 
             <div class="header-center">
                 <h1>Animali Disponibili</h1>
-            </div>
-
-            <div class="header-right" sec:authorize="hasAuthority('ROLE_ADMIN')">
-                <a href="/admin/animale/new">
-                    <button class="add-beach-button">+ Aggiungi Animale</button>
-                </a>
-            </div>
+            </div>           
         </div>
 
-        <div class="container">
-            <ul>
-                <li th:each="animale : ${animali}">
-                    <div class="image-wrapper">
-                        <!-- Se vuoi aggiungere un'immagine dell'animale -->
-                        <img th:if="${animale.imagePath}"
-                             th:src="@{${animale.imagePath}(v=${#dates.createNow().time})}"
-                             alt="Immagine Animale">
-                        <img th:unless="${animale.imagePath}"
-                             src="/images/placeholder-animal.jpg"
-                             alt="Immagine non disponibile">
-                    </div>
+       <div class="grid-container">
+	<!-- Card per aggiungere un nuovo animale -->
+	<div class="grid center">
+		<a class="grid-button" th:href="@{/animale/form}">
+		</a>
+		<div class="title3">aggiungi nuovo annuncio.
+		</div>
+	</div>
 
-                    <div class="content-wrapper">
-                        <h2 th:text="${animale.nome}">Nome</h2>
-                        <p><b>Genere:</b> <span th:text="${animale.genere}">Genere</span></p>
-                        <p><b>Età:</b> <span th:text="${animale.eta}">Età</span> anni</p>
+	<!-- Card per ogni animale -->
+	<div class="grid center" th:each="animale : ${animali}">
+		<a class="grid-button" th:href="@{'/animale/' + ${animale.id}}">
+		</a>
 
-                        <div class="actions">
-                            <a class="btn btn--primary" th:href="@{'/animale/' + ${animale.id}}">
-                                Scopri di più &rarr;
-                            </a>
+		<!-- Immagine -->
+		<div th:if="${animale.fotoImagePath}">
+    <img class="product-image" th:src="@{${animale.fotoImagePath}}" />
+</div>
+<div th:unless="${animale.fotoImagePath}">
+    <div class="product-image flex center">Nessuna foto disponibile</div>
+</div>
 
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+		<!-- Nome -->
+		<div class="title" th:text="${animale.nome}">Nome animale</div>
+
+		<div class="animal-details">
+  <p th:text="'Genere: ' + ${animale.genere}">Genere</p>
+  <p th:text="'Età: ' + ${animale.eta} + ' anni'">Età</p>
+  <p th:text="'Razza: ' + ${animale.razza}">Razza</p>
+  <p th:text="'Pubblicato da: ' + ${animale.user.nome}">Pubblicato da</p>
+</div>
+
+	</div>
+</div>
+
     </div>
 </body>
 

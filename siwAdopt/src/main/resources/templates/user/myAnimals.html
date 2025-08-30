@@ -1,31 +1,57 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
-    <title>I tuoi annunci</title>
+    <title>I miei Animali</title>
     <link rel="stylesheet" href="/css/stile.css">
 </head>
 
-<body class="my-animals-page">
- <div class="animals-wrapper">
-  <h1>I tuoi annunci</h1>
+<body class="animals-page">
+    <div class="page-wrapper">
+        <!-- Barra sticky in alto -->
+        <div class="sticky-header">
+            <div class="header-left">
+                <a class="navbar-link" href="/"> &larr; Torna alla Home </a>
+            </div>
 
-  <!-- Scroll solo sulla lista -->
-  <div class="animals-scroll">
-    <div th:if="${#lists.isEmpty(animali)}">
-      <p>Non hai ancora pubblicato annunci.</p>
+            <div class="header-center">
+                <h1>I miei Animali in Vendita</h1>
+            </div>           
+        </div>
+
+        <!-- Contenitore griglia -->
+        <div class="grid-container">
+            <!-- Card per aggiungere un nuovo animale -->
+            <div class="grid center">
+                <a class="grid-button" th:href="@{/animale/form}"></a>
+                <div class="title3">aggiungi nuovo annuncio.</div>
+            </div>
+
+            <!-- Card per ogni animale -->
+            <div class="grid center" th:each="animale : ${animali}">
+                <a class="grid-button" th:href="@{'/animale/' + ${animale.id}}"></a>
+
+                <!-- Immagine -->
+                <div th:if="${animale.fotoImagePath}">
+                    <img class="product-image" th:src="@{${animale.fotoImagePath}}" />
+                </div>
+                <div th:unless="${animale.fotoImagePath}">
+                    <div class="product-image flex center">Nessuna foto disponibile</div>
+                </div>
+
+                <!-- Nome -->
+                <div class="title" th:text="${animale.nome}">Nome animale</div>
+
+                <!-- Dettagli -->
+                <div class="animal-details">
+                    <p th:text="'Genere: ' + ${animale.genere}">Genere</p>
+                    <p th:text="'Età: ' + ${animale.eta} + ' anni'">Età</p>
+                    <p th:text="'Razza: ' + ${animale.razza}">Razza</p>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <ul th:if="${!#lists.isEmpty(animali)}">
-      <li th:each="animale, iterStat : ${animali}">
-        Annuncio n. [[${iterStat.index + 1}]] – Nome: [[${animale.nome}]], Genere: [[${animale.genere}]], Età: [[${animale.eta}]]
-      </li>
-    </ul>
-  </div>
-
-  <!-- Bottone in fondo -->
-  <a th:href="@{/user/indexU}">Torna alla Home</a>
-</div>
-
 </body>
+
 </html>
