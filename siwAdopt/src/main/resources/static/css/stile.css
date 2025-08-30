@@ -545,6 +545,13 @@ body.my-animals-page {
 }
 
 
+/* Parte destra con il pulsante "Metti in adozione" */
+.sticky-header .header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
 
 
 

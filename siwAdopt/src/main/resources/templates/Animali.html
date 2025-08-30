@@ -30,17 +30,18 @@
 
             <div class="header-center">
                 <h1>Animali Disponibili</h1>
-            </div>           
+            </div>   
+            	<!-- Card per aggiungere un nuovo animale -->
+          	<div class="header-right">
+                  <button class="navbar-link" onclick="window.location.href='/animale/form'">
+                                ➕ Metti in adozione un animale
+                  </button>
+          </div>
+
+                   
         </div>
 
        <div class="grid-container">
-	<!-- Card per aggiungere un nuovo animale -->
-	<div class="grid center">
-		<a class="grid-button" th:href="@{/animale/form}">
-		</a>
-		<div class="title3">aggiungi nuovo annuncio.
-		</div>
-	</div>
 
 	<!-- Card per ogni animale -->
 	<div class="grid center" th:each="animale : ${animali}">

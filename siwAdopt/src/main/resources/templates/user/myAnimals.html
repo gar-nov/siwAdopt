@@ -12,7 +12,7 @@
         <!-- Barra sticky in alto -->
         <div class="sticky-header">
             <div class="header-left">
-                <a class="navbar-link" href="/"> &larr; Torna alla Home </a>
+                <a class="navbar-link" href="/user/indexU"> &larr;  </a>
             </div>
 
             <div class="header-center">
@@ -30,7 +30,8 @@
 
             <!-- Card per ogni animale -->
             <div class="grid center" th:each="animale : ${animali}">
-                <a class="grid-button" th:href="@{'/animale/' + ${animale.id}}"></a>
+                <a class="grid-button" th:href="@{'/animale/' + ${animale.id} (from='mine')}"></a>
+
 
                 <!-- Immagine -->
                 <div th:if="${animale.fotoImagePath}">
