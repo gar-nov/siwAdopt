@@ -26,5 +26,10 @@ public class AnimaleService {
     public List<Animale> findByUser(User user) {
         return animaleRepository.findByUser(user);
     }
+    
+    public Animale findById(Long id) {
+        return animaleRepository.findById(id).get();
+    }
+
 
 }

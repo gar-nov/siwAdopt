@@ -42,10 +42,8 @@ public class AuthConfiguration {
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(authz -> authz
-                 .requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/login", "/login/**","/animali", "/css/**", "/images/**", "/favicon.ico").permitAll()
+                 .requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/login", "/login/**","/animali","/animale/**", "/css/**", "/images/**", "/favicon.ico").permitAll()
                  .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
-                 .requestMatchers(HttpMethod.GET, "//**").permitAll()
-                 .requestMatchers(HttpMethod.GET, "//").permitAll()
                  .requestMatchers(HttpMethod.GET, "/user/").authenticated()
                  .requestMatchers(HttpMethod.POST, "//**").hasAuthority(ADMIN_ROLE)
                  .requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority(ADMIN_ROLE)

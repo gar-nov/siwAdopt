@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista degli Animali</title>
+    <link rel="stylesheet" href="/css/stile.css">
+</head>
+
+<body>
+	<div class="sticky-header">
+            <div class="header-left">
+                <div sec:authorize="isAuthenticated() and !hasAuthority('ROLE_ADMIN') ">
+                    <button class="navbar-link" onclick="window.location.href='/user/my-animals'">
+                        &larr; Torna Indietro
+                    </button>
+                </div>
+                <div sec:authorize="isAuthenticated() or hasAuthority('ROLE_ADMIN')">
+                    <button class="navbar-link" onclick="window.location.href='/animali'">
+                        &larr; Torna Indietro
+                    </button>
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <button class="navbar-link" onclick="window.location.href='/animali'">
+                        &larr; Torna Indietro
+                    </button>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <h1>Animali Disponibili</h1>
+            </div>           
+        </div>
+
+<div class="flex-column center" th:if="${animale}">
+    <div class="animal-container">
+        <!-- Immagine -->
+        <div>
+            <div th:if="${animale.fotoImagePath}">
+                <img class="animal-image-bigger" th:src="@{${animale.fotoImagePath}}" />
+            </div>
+            <div th:unless="${animale.fotoImagePath}">
+                <div class="animal-image-bigger flex center">nessuna foto disponibile</div>
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="animal-info">
+            <div class="title" th:text="${animale.nome}">Nome Animale</div>
+            <div class="title2" th:text="${animale.descrizione}">Descrizione</div>
+
+            <div class="title2">Venditore:
+                <a th:href="@{'/user/' + ${animale.user.id}}"
+                   th:text="${animale.user.nome + ' ' + animale.user.cognome}">utente</a>
+            </div>
+
+            <div class="title2">Genere: 
+                <span th:text="${animale.genere}">Genere</span>
+            </div>
+            <div class="title2">Età: 
+                <span th:text="${animale.eta + ' anni'}">Età</span>
+            </div>
+            <div class="title2">Razza: 
+                <span th:text="${animale.razza}">Razza</span>
+            </div>
+
+            <!-- Pulsanti modifica/cancella -->
+            <div th:if="(${animale.user.id} == ${currentUserId}) or ${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                <div>
+                    <a th:href="@{'/animale/edit/form/' + ${animale.id}}">modifica</a>
+                </div>
+                <a th:href="@{'/animale/delete/confirm/' + ${animale.id}}">cancella</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:unless="${animale}">
+    Questo animale non esiste!
+</div>
+
+</body>
+</html>

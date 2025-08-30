@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
@@ -40,7 +42,7 @@ public class AnimaleController {
     
     @GetMapping("/user/my-animals")
     public String getMyAnimals(Model model) {
-        Authentication auth = (Authentication) SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
         User currentUser = credentials.getUser();
@@ -49,6 +51,26 @@ public class AnimaleController {
         model.addAttribute("animali", animali);
         return "user/myAnimals.html"; // nome a tua scelta
     }
+
+    @GetMapping("/animale/{id}")
+    public String getAnimaleDetails(@PathVariable("id") Long id, Model model) {
+        Animale animale = animaleService.findById(id);
+        model.addAttribute("animale", animale);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())) {
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+            model.addAttribute("currentUserId", credentials.getUser().getId());
+        }
+
+        return "animaleDetail"; // carica src/main/resources/templates/animaleDetail.html
+    }
+
+
+   
+
+
 
 
 }
