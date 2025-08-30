@@ -42,7 +42,7 @@ public class AuthenticationController {
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("credentials", new Credentials());
-        return "formRegisterUser";
+        return "formRegisterUser.html";
     }
 
     
@@ -62,7 +62,7 @@ public class AuthenticationController {
             return "formLogin";
         }
 
-        return "formRegisterUser";
+        return "formRegisterUser.html";
     }
 
 

@@ -2,6 +2,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   overflow-x: hidden;
   height: auto;
   overflow-y: auto;
@@ -14,11 +15,23 @@ body.indexU-page {
   overflow-y: hidden;
 }
 
+
+body.login-page,
+body.register-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+
 /* Disposizione verticale delle sezioni */
 body {
   display: flex;
   flex-direction: column; /* navbar, container, footer */
 }
+
+
 
 /* Navbar in alto */
 .navbar {
@@ -37,6 +50,13 @@ body {
 :root {
   --nav-h: 40px;
   --foot-h: 40px;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -554,8 +574,72 @@ body.my-animals-page {
 }
 
 
+/* ================== STILE REGISTRATI/ACCEDI  ===================== */
 
 
+.grid-container-form {
+   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-form {
+ display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  max-width: 90%;
+  backdrop-filter: blur(var(--blur));
+  padding: 3em;
+  background: #D9DFEA;
+  border-radius: 30px;
+}
+
+
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color1);
+  margin-bottom: 2em;
+}
+
+.button {
+  color: #efefef;
+  outline: 0;
+  border: 1px solid var(--color1);
+  background-color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.2em 0.5em;
+  font-size: 0.7em;
+
+ 
+}
+
+.button:hover {
+  color: var(--color2);
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 0.4em;
+  border: 1px solid var(--color1);
+  border-radius: 5px;
+  font-size: 1em;
+  
+}
+
+/* Contenitore principale tra navbar e footer */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3em; /* Spazio di sicurezza dal footer */
+}
 
 
 
@@ -565,18 +649,19 @@ body.my-animals-page {
 
 
 .foot {
-  height: 40px;
+ height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: #FFEBCD
+  background-color: #FFEBCD;
 }
 .foot:hover {
  opacity: 1;
  color: var(--color1);
  background-color: var(--color2);
 }
+
 
 
 

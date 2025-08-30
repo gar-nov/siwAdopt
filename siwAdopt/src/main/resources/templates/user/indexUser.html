@@ -23,17 +23,19 @@
 <header class="navbar">
   <div class="navbar-content">
     <!-- Logo a sinistra -->
-    <div class="logo">
-      <h1>Logo</h1>
+   <div class="logo">
+        <a href="/user/indexU">
+                <img src="/images/logo.png" alt="Logo Adopt Me">
+            </a>
     </div>
-
     <!-- Sezione destra con Accedi e altro elemento -->
     <div class="navbar-right">
-     <a th:href="@{/user/my-animals}" class="button">Profilo</a>
+     <a th:href="@{/user/my-animals}" class="navbar-link">Profilo</a>
 
-     <a th:href="@{/logout}" class="button">Logout</a>
+     <a th:href="@{/logout}" class="navbar-link">Logout</a>
 
     </div>
+    
   </div>
 </header>
 

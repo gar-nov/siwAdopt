@@ -6,56 +6,62 @@
     <link rel="stylesheet" href="/css/stile.css"> 
 </head>
 
-<body>
+<body class="register-page">
+
+<!-- HEADER -->
 <header class="navbar">
   <div class="navbar-content">
     <div class="logo">
-      <h1>Logo</h1>
+       <a href="/">
+          <img src="/images/logo.png" alt="Logo Adopt Me">
+       </a>
     </div>  
+  </div>
 </header>
 
-<div class="grid-container-form">
-		<div class="grid-form">
-			<div class="flex title">crea un nuovo account
-			</div>
-			<form th:action="@{/register}" method="POST">
-				<table>
-					<tr>
-						<td>username</td>
-						<td><input type="text" placeholder="username" required th:field="${credentials.username}" />
-						</td>
-						<td th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}"
-							th:style="'color:red'"></td>
-					</tr>
-					<tr>
-						<td>password</td>
-						<td><input type="password" placeholder="password" required th:field="${credentials.password}" />
-						</td>
-						<td th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}"
-							th:style="'color:red'"></td>
-					</tr>
-					<tr>
-						<td>nome</td>
-						<td><input type="text" placeholder="nome" required th:field="${user.nome}" /></td>
-						<td th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}" th:style="'color:red'">
-						</td>
-					</tr>
-					<tr>
-						<td>cognome</td>
-						<td><input type="text" placeholder="cognome" required th:field="${user.cognome}" /></td>
-						<td th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}"
-							th:style="'color:red'">
-						</td>
-					</tr>
-						<td>
-							<button class="button" type="submit">Crea il tuo account</button>
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
-	</div>
+<!-- CONTENITORE CENTRALE -->
+<div class="content-wrapper">
+  <div class="grid-container-form">
+    <div class="grid-form">
+      <div class="flex title">Crea un nuovo account</div>
 
+      <form th:action="@{/register}" method="POST">
+        <table>
+          <tr>
+            <td>username</td>
+            <td><input type="text" placeholder="username" required th:field="${credentials.username}" /></td>
+            <td th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:red'"></td>
+          </tr>
+          <tr>
+            <td>password</td>
+            <td><input type="password" placeholder="password" required th:field="${credentials.password}" /></td>
+            <td th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'"></td>
+          </tr>
+          <tr>
+            <td>nome</td>
+            <td><input type="text" placeholder="nome" required th:field="${user.nome}" /></td>
+            <td th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}" th:style="'color:red'"></td>
+          </tr>
+          <tr>
+            <td>cognome</td>
+            <td><input type="text" placeholder="cognome" required th:field="${user.cognome}" /></td>
+            <td th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}" th:style="'color:red'"></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button class="button" type="submit">Crea il tuo account</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <div th:insert="~{fragments/base.html :: footer}"></div>
+
 </body>
 </html>
+
