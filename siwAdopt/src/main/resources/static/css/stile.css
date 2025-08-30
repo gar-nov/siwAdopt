@@ -593,7 +593,7 @@ body.my-animals-page {
   max-width: 90%;
   backdrop-filter: blur(var(--blur));
   padding: 3em;
-  background: #D9DFEA;
+  background: #FFEBCD;
   border-radius: 30px;
 }
 
