@@ -14,14 +14,11 @@
 
             <div class="flex-column bg3">
                 <div class="flex">
-                    <div class="title" th:text="${categoria.nome}">Nome Categoria</div>
+                    <div class="title" th:text="${categoria.nome}">Nome categoria:</div>
                 </div>
-
-               
-
                 <div sec:authorize="hasAuthority('ADMIN')">
                    
-                    <a th:href="@{'/admin/categoria/delete/confirm/'+${categoria.id}}"> | cancella</a>
+                    <a th:href="@{'/admin/categoria/delete/confirm/'+${categoria.id}}"> Elimina categoria</a>
                 </div>
 
                 <div class="dropdown">

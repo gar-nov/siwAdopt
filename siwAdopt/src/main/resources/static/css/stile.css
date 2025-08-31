@@ -644,6 +644,8 @@ input[type="password"] {
   align-items: center;
   padding-bottom: 3em; /* Spazio di sicurezza dal footer */
 }
+
+
 /***********CATEGORIA.HTML ***/
 .flex-column {
 	display: flex;
@@ -660,11 +662,7 @@ input[type="password"] {
 	gap: var(--gap, 1rem);
 }
 
-.bg3 {
-	margin: 2em;
-	backdrop-filter: blur(var(--blur));
-	z-index: 2;
-}
+
 .dropdown {
 	position: relative;
 	display: inline-block;
@@ -683,15 +681,27 @@ input[type="password"] {
 .dropdown:hover .dropdown-content {
 	display: block;
 }
+
+.bg3 {
+  margin: 2em 0 2em 3rem; /* margine sinistro per spostare tutto a sinistra */
+  max-width: 800px;
+  padding: 1.5rem;
+  background-color: #fffaf2;
+  border: 2px solid #f5c388;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
 .attached-info {
-	position: relative;
-	background-color: var(--color1);
-	border-radius: 10px;
-	color: #efefef;
-	width: fit-content;
-	padding: 1.3em;
-	left: 3rem;
-	font-weight: 300;
+  margin: 1.5em 0 2em 3rem; /* stesso margine per allineamento coerente */
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2d7a2d;
+  padding-left: 1rem;
+  border-left: 4px solid #C58940;
+  max-width: 800px;
+  text-align: left;
 }
 
 
