@@ -26,11 +26,7 @@
 
         <!-- Contenitore griglia -->
         <div class="grid-container">
-            <!-- Card per aggiungere un nuovo animale -->
-            <div class="grid center">
-                <a class="grid-button" th:href="@{/animale/form}"></a>
-                <div class="title3">aggiungi nuovo annuncio.</div>
-            </div>
+           
 
             <!-- Card per ogni animale -->
             <div class="grid center" th:each="animale : ${animali}">
