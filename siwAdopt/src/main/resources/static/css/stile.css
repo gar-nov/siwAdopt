@@ -69,7 +69,7 @@ main {
   height: 130px;       /* regola grandezza del logo */
   width: 130px;
   display: block;
-  margin-top: -40px;
+  margin-top: -38px;
   margin-left: -40px;
 }
 
@@ -88,9 +88,6 @@ main {
   justify-content: space-between; /* Logo a sinistra, link a destra */
   align-items: center; /* Allinea verticalmente */
 }
-
-
-
 
 .navbar-right {
   display: flex;
@@ -122,12 +119,6 @@ main {
 .navbar-link:hover {
   background-color: #FFD19A;
 }
-
-
-
-
-
-
 
 
 /* Header della pagina di registrazione (isolato) */
@@ -165,14 +156,27 @@ main {
 
 }
 
+/*torna alla home, in altre pagine*/
 
 .login-navbar .logo img {
   height: 110px;  /* grandezza del logo */
   width: auto;
   display: block;
-  margin-top: -18px;
+  margin-top: -20px;
   margin-left: 10px;
 }
+
+
+.siw-logo .logo img {
+  height: 130px;
+  width: auto;
+  display: block;
+  margin-top: 15px;
+  margin-left: -35px;
+}
+
+
+
 
 
 

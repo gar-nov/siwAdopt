@@ -11,22 +11,35 @@
     <div class="page-wrapper">
         <div class="sticky-header">
             <div class="header-left">
-                <div sec:authorize="hasAuthority('ROLE_ADMIN')">
-                    <button class="navbar-link" onclick="window.location.href='/indexAdmin'">
-                        &larr; Torna Indietro
-                    </button>
+		      
+                 <!-- Admin -->
+                <div class="siw-logo" sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <div class="logo">
+                    <a href="/indexAdmin">
+                       <img src="/images/logo.png" alt="Logo Adopt Me">
+                    </a>
+                    </div>
                 </div>
-                <div sec:authorize="isAuthenticated() and !hasAuthority('ROLE_ADMIN')">
-                    <button class="navbar-link" onclick="window.location.href='/user/indexU'">
-                        &larr; Torna Indietro
-                    </button>
+                          
+                 <!-- Utente -->
+                <div class="siw-logo" sec:authorize="isAuthenticated() and !hasAuthority('ROLE_ADMIN')">
+                    <div class="logo">
+                    <a href="/user/indexU">
+                       <img src="/images/logo.png" alt="Logo Adopt Me">
+                    </a>
+                    </div>
                 </div>
-                <div sec:authorize="isAnonymous()">
-                    <button class="navbar-link" onclick="window.location.href='/'">
-                        &larr; Torna Indietro
-                    </button>
-                </div>
-            </div>
+                <!-- Anonimo -->
+              <div class="siw-logo" sec:authorize="isAnonymous()">
+                <div class="logo">
+                <a href="/">
+                   <img src="/images/logo.png" alt="Logo Adopt Me">
+                </a>
+               </div>
+              </div>
+              
+              
+           </div>
 
             <div class="header-center">
                 <h1>Animali Disponibili</h1>
