@@ -1,5 +1,6 @@
 package it.uniroma3.siw.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +9,23 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.AnimaleService;
+import it.uniroma3.siw.service.CategoriaService;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.validator.AnimaleValidator;
+import jakarta.validation.Valid;
 import it.uniroma3.siw.model.Animale;
 
 
@@ -28,6 +38,12 @@ public class AnimaleController {
     
 	@Autowired
 	private CredentialsService credentialsService;
+	
+	@Autowired
+	private CategoriaService categoriaService;
+	
+	@Autowired
+    private AnimaleValidator animaleValidator;
 	
 	
 	
@@ -68,7 +84,59 @@ public class AnimaleController {
     }
 
 
-   
+   //gestione nuovo animale
+    
+    @GetMapping("/animale/form")
+	public String getAnimaleForm(Model model) {
+		model.addAttribute("animale", new Animale());
+		model.addAttribute("categorie", this.categoriaService.findAll());
+		return "animaleForm.html";
+	}
+
+    @PostMapping("/animale")
+    public String addAnimale(@ModelAttribute("animale") Animale animale,
+                             BindingResult bindingResult,
+                             Model model,
+                             @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        // 1. Recupero l'utente corrente
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+        User currentUser = credentials.getUser();
+        animale.setUser(currentUser); // ✅ settato prima della validazione
+
+        // 2. Foto
+        String fileName = null;
+        if (!multipartFile.isEmpty()) {
+            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            fileName = fileName.replaceAll("\\s+", "");
+            animale.setFoto(fileName);
+        }
+
+        // 3. Validazione manuale
+        animaleValidator.validate(animale, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            System.out.println("❌ Errori:");
+            bindingResult.getAllErrors().forEach(e -> System.out.println(" -> " + e));
+            model.addAttribute("categorie", this.categoriaService.findAll());
+            return "animaleForm.html";
+        }
+
+        // 4. Salvataggio
+        Animale animaleSalvato = animaleService.save(animale);
+        if (!multipartFile.isEmpty()) {
+            String uploadDir1 = "src/main/resources/static/images/animali-foto/" + animaleSalvato.getId();
+            String uploadDir2 = "target/classes/static/images/animali-foto/" + animaleSalvato.getId();
+            FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
+            FileUploadUtil.saveFile(uploadDir2, fileName, multipartFile);
+        }
+
+        return "redirect:/animale/" + animaleSalvato.getId();
+    }
+
+
+
 
 
 

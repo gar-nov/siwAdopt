@@ -53,12 +53,14 @@
     <div class="animal-container">
         <!-- Immagine -->
         <div>
-            <div th:if="${animale.fotoImagePath}">
-                <img class="animal-image-bigger" th:src="@{${animale.fotoImagePath}}" />
-            </div>
-            <div th:unless="${animale.fotoImagePath}">
-                <div class="animal-image-bigger flex center">nessuna foto disponibile</div>
-            </div>
+            <div th:if="${animale.foto}">
+    <img class="animal-image-bigger"
+         th:src="@{'/images/animali-foto/' + ${animale.id} + '/' + ${animale.foto}}" />
+</div>
+<div th:unless="${animale.foto}">
+    <div class="animal-image-bigger flex center">nessuna foto disponibile</div>
+</div>
+
         </div>
 
         <!-- Info -->
