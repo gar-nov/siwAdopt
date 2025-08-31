@@ -36,6 +36,17 @@ public class AuthenticationController {
     public String home() {
         return "index";
     }
+    @GetMapping("/admin/indexAdmin")
+    public String adminHome() {
+        return "admin/indexAdmin.html";
+    }
+
+    @GetMapping("/user/indexU")
+    public String userHome() {
+        return "user/indexUser.html";
+    }
+
+
 
     // Mostra il form di registrazione
     @GetMapping("/register")
@@ -117,6 +128,9 @@ public class AuthenticationController {
         // Se non è admin, reindirizza alla homepage principale
         return "user/indexUser.html";
     }
+    
+   
+
 
    
 

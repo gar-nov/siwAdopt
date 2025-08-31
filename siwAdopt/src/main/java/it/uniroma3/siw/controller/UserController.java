@@ -9,11 +9,6 @@ public class UserController {
 	
 	
 	
-	  @GetMapping("/user/indexU")
-	    public String indexUser(Model model) {
-	       
-	        return "user/indexUser.html";
-	    }
 
 
 }
