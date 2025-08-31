@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>I miei Animali</title>
+    <link rel="stylesheet" href="/css/stile.css">
+</head>
+
+<body class="animals-page">
+    <div class="page-wrapper">
+        <!-- Barra sticky in alto -->
+        <div class="sticky-header">
+          
+
+            <div class="header-center">
+                <h1>Categorie</h1>
+            </div>  
+            <!-- Card per aggiungere un nuovo animale -->
+          	<div class="header-right">
+                 <!-- Box per aggiungere nuova categoria (solo admin) -->
+    <div class="grid-fit" sec:authorize="hasAuthority('ADMIN')">
+        <a class="navbar-link" th:href="@{/admin/categoria/form}">➕ Nuova categoria</a>
+    </div>
+          </div>         
+        </div>
+
+        <!-- Contenitore griglia -->
+        <div class="grid-container">                    
+            <!-- Card per ogni categoria -->
+           <div class="grid center" th:each="categoria : ${categorie}">
+              <a class="title" th:href="@{'/categoria/'+${categoria.id}}" th:text="${categoria.nome}"></a>
+
+          </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

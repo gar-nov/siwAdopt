@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>I miei Animali</title>
+    <link rel="stylesheet" href="/css/stile.css">
+</head>
+
+<body class="animals-page">
+    <div class="page-wrapper">
+        <!-- Barra sticky in alto -->
+        <div class="sticky-header">
+          
+
+                    
+        </div>
+
+        <!-- Contenitore griglia -->
+        <div class="grid-container">                    
+           <form th:action="@{/admin/categoria}" method="POST" th:object="${categoria}">
+            
+            <!-- errori globali -->
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p th:each="err : ${#fields.globalErrors()}" 
+                   th:text="${err}" 
+                   th:style="'color:red'">...</p>
+            </div>
+
+            <table>
+                <tr>
+                    <td>Nome:</td>
+                    <td><input type="text" th:field="*{nome}" /></td>
+                    <td th:if="${#fields.hasErrors('nome')}" 
+                        th:errors="*{nome}" 
+                        th:style="'color:red'"></td>
+                </tr>
+            </table>
+
+            <div>
+                <button class="button" type="submit">Conferma</button>
+            </div>
+        </form>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${categoria.nome}">Categoria</title>
+    <link rel="stylesheet" href="/css/stile.css">
+</head>
+
+<body class="animals-page">
+    <div class="page-wrapper">
+
+        <!-- Se la categoria esiste -->
+        <div class="flex-column" th:if="${categoria}">
+
+            <div class="flex-column bg3">
+                <div class="flex">
+                    <div class="title" th:text="${categoria.nome}">Nome Categoria</div>
+                </div>
+
+               
+
+                <div sec:authorize="hasAuthority('ADMIN')">
+                   
+                    <a th:href="@{'/admin/categoria/delete/confirm/'+${categoria.id}}"> | cancella</a>
+                </div>
+
+                <div class="dropdown">
+                    <div class="dropdown-content">
+                        <div>
+                            <a th:href="@{'/categoria/'+${categoria.id}}">Tutti</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="attached-info">
+                <div class="flex title2">Animali di questa categoria:</div>
+            </div>
+
+            <!-- Se ci sono animali -->
+            <div class="grid-container" th:if="${animali}">
+                <div class="grid center" th:each="animale : ${animali}">
+                    <a class="grid-button" th:href="@{'/animale/' + ${animale.id}}">&nbsp;</a>
+
+                    <div th:if="${animale.fotoImagePath}">
+                        <img class="product-image" th:src="@{${animale.fotoImagePath}}" />
+                    </div>
+                    <div th:unless="${animale.fotoImagePath}">
+                        <div class="product-image flex center">Nessuna foto disponibile</div>
+                    </div>
+
+                    <div class="title2" th:text="${animale.nome}">Nome</div>
+                    <div th:text="${animale.user.nome}">Pubblicato da</div>
+                </div>
+            </div>
+
+            <!-- Se non ci sono animali -->
+            <div class="grid-container" th:unless="${animali}">
+                <div class="grid center">
+                    <p>Nessun animale disponibile in questa categoria.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Se la categoria non esiste -->
+        <div th:unless="${categoria}">
+            <p>Questa categoria non esiste!</p>
+        </div>
+
+    </div>
+</body>
+</html>

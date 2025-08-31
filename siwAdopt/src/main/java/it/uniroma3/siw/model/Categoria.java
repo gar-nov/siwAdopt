@@ -22,11 +22,10 @@ public class Categoria {
 	    @NotBlank        
 	    private String nome;
 
-	    @NotBlank
-	    private String descrizione;
+	  
 
 	   
-	    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	    @OneToMany(mappedBy="categoria", cascade={CascadeType.REMOVE})
 	    private List<Animale> animali;
 
 
@@ -47,13 +46,7 @@ public class Categoria {
 	    	        this.nome = nome; 
 	    }
 
-	    public String getDescrizione() { 
-	    	return descrizione;
-	    }
-	    
-	    public void setDescrizione(String descrizione) { 
-	    	        this.descrizione = descrizione; 
-	    }
+	   
 
 	    public List<Animale> getAnimali() { 
 	    	   return animali; 
@@ -65,7 +58,7 @@ public class Categoria {
 	    // equals & hashCode 
 	    @Override
 	    public int hashCode() { 
-	    	       return Objects.hash(nome, descrizione); }
+	    	       return Objects.hash(nome); }
         
 	    @Override
 	    public boolean equals(Object obj) {
@@ -76,7 +69,7 @@ public class Categoria {
 	        if (getClass() != obj.getClass())
 	            return false;
 	        Categoria other = (Categoria) obj;
-	        return Objects.equals(nome, other.nome)
-	                && Objects.equals(descrizione, other.descrizione);
+	        return Objects.equals(nome, other.nome);
+	              
 	    }
 }
