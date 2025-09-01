@@ -11,6 +11,12 @@
 	
 
 	<div class="flex-column" th:if="${user}">
+		
+		      <div class="logo-categoria">
+                    <a href="/user/indexU">
+                        <img src="/images/logo.png" alt="Logo Adopt Me">
+                    </a>
+                </div>
 
 		<!-- Info utente -->
 		<div class="flex-column bg3">
@@ -19,9 +25,13 @@
 			</div>
 
 			<!-- Mostra bottone modifica solo se ADMIN o stesso utente -->
-			<div th:if="(${user.id} == ${currentUserId}) OR (${#authorization.expression('hasAuthority(''ADMIN'')')})">
-				<a th:href="@{'/user/edit/form/' + ${user.id}}">modifica</a>
-			</div>
+			<div th:if="(${user.id} == ${currentUserId}) OR (${#authorization.expression('hasAuthority(''ADMIN'')')})"
+             class="delete-box">
+             <form th:action="@{'/user/edit/form/' + ${user.id}}" method="get">
+                 <button class="button delete-button" type="submit">Modifica profilo</button>
+             </form>
+             </div>
+
 		</div>
 
 		<!-- Titolo sezione animali -->

@@ -12,12 +12,23 @@
     <!-- HEADER -->
     <header class="navbar">
         <div class="navbar-content">
-            <div class="logo">
-                <a href="/admin/indexAdmin">
-                    <img src="/images/logo.png" alt="Logo Adopt Me">
-                </a>
-            </div>
-        </div>
+            
+                 <!-- Admin -->
+              
+                    <div class="logo" sec:authorize="hasAuthority('ADMIN')">
+                    <a href="/admin/indexAdmin">
+                       <img src="/images/logo.png" alt="Logo Adopt Me">
+                    </a>
+                    </div>
+           
+                          
+                 <!-- Utente -->
+        
+                    <div class="logo" sec:authorize="isAuthenticated() and !hasAuthority('ADMIN')">
+                    <a href="/user/indexU">
+                       <img src="/images/logo.png" alt="Logo Adopt Me">
+                    </a>
+           </div>
     </header>
 
     <!--  CONTENITORE che occupa tutto lo spazio e centra il form -->
