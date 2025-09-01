@@ -122,11 +122,11 @@ public class AuthenticationController {
 
         // Se è admin, reindirizza alla pagina dell'admin
         if (Credentials.ADMIN_ROLE.equals(credentials.getRole())) {
-            return "admin/indexAdmin.html";
+            return "admin/indexAdmin";
         }
 
         // Se non è admin, reindirizza alla homepage principale
-        return "user/indexUser.html";
+        return "user/indexUser";
     }
     
    
