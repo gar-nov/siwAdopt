@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Credentials;
@@ -25,7 +24,6 @@ import it.uniroma3.siw.service.AnimaleService;
 import it.uniroma3.siw.service.CategoriaService;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.validator.AnimaleValidator;
-import jakarta.validation.Valid;
 import it.uniroma3.siw.model.Animale;
 
 

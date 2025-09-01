@@ -5,7 +5,7 @@ import java.nio.file.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
-// classe ausiliaria per l'upload delle foto
+// classe ausiliaria per l'upload delle foto.
 public class FileUploadUtil {
 
 	public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {

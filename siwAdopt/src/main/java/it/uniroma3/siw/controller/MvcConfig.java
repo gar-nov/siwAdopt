@@ -16,7 +16,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	}
 
 	// permette di avere visibilità della cartella per permettere di visionare le
-	// immagini dei prodotti
+	// immagini dei prodotti.
 	private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
 		Path uploadDir = Paths.get(dirName);
 		String uploadPath = uploadDir.toFile().getAbsolutePath();
