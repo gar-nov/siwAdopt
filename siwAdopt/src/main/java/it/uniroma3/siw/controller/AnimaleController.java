@@ -134,7 +134,31 @@ public class AnimaleController {
 
         return "redirect:/animale/" + animaleSalvato.getId();
     }
+// gestione eliminazione di un animale
+    
+    @GetMapping("/animale/delete/confirm/{id}")
+    public String confirmDeleteAnimale(@PathVariable("id") Long id, Model model) {
 
+        Animale animale = this.animaleService.findById(id);
+
+        // Utente autenticato
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+        User currentUser = credentials.getUser();
+
+        // Verifica autorizzazione
+        if (credentials.getRole().equals(Credentials.ADMIN_ROLE) || animale.getUser().equals(currentUser)) {
+            this.animaleService.deleteById(id);
+            return "redirect:/animali";
+        }
+
+        //  NON autorizzato
+        return "unauthorized";
+    }
+
+
+    
+    
 
 
 

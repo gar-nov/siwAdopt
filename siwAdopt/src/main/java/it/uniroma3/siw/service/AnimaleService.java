@@ -41,6 +41,10 @@ public class AnimaleService {
             animale.getNome(), animale.getUser(), animale.getCategoria());
     }
 
+    public void deleteById(Long id) {
+    	this.animaleRepository.deleteById(id);
+    }
+
     
 
 
