@@ -89,6 +89,7 @@ public class AnimaleController {
     @GetMapping("/animale/form")
 	public String getAnimaleForm(Model model) {
 		model.addAttribute("animale", new Animale());
+		System.out.println("✅ Stai passando 'categorie'? ");
 		model.addAttribute("categorie", this.categoriaService.findAll());
 		return "animaleForm.html";
 	}
@@ -155,6 +156,82 @@ public class AnimaleController {
         //  NON autorizzato
         return "unauthorized";
     }
+    
+    //gestione modifica animale
+ 
+
+    @GetMapping("/animale/edit/form/{id}")
+    public String editAnimaleForm(@PathVariable Long id, Model model) {
+        Animale animale = animaleService.findById(id);
+        model.addAttribute("animale", animale);
+        model.addAttribute("categorie", this.categoriaService.findAll());
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+        User currentUser = credentials.getUser();
+
+        // puoi modificare se sei ADMIN oppure proprietario dell'annuncio
+        if (Credentials.ADMIN_ROLE.equals(credentials.getRole()) || animale.getUser().equals(currentUser)) {
+            return "animaleEditForm";
+        }
+        return "unauthorized";
+    }
+    @PostMapping("/animale/edit/{id}")
+    public String editAnimale(@ModelAttribute("animale") Animale animale,
+                              BindingResult bindingResult,
+                              @PathVariable Long id,
+                              Model model,
+                              @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        // Recupera l'animale originale dal DB
+        Animale vecchioAnimale = this.animaleService.findById(id);
+
+        // Mantieni ID e user esistenti
+        animale.setId(vecchioAnimale.getId());
+        animale.setUser(vecchioAnimale.getUser());
+
+        // Gestione immagine PRIMA del confronto
+        if (multipartFile.isEmpty()) {
+            animale.setFoto(vecchioAnimale.getFoto());
+        } else {
+            String fileName = org.springframework.util.StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            fileName = fileName.replaceAll("\\s+", "");
+            animale.setFoto(fileName);
+        }
+
+        // Confronto con animale vecchio
+        if (!vecchioAnimale.equals(animale)) {
+            this.animaleValidator.validate(animale, bindingResult);
+        }
+
+        // In caso di errori, torna al form con categorie
+        if (bindingResult.hasErrors()) {
+            System.out.println("❌ Errori di validazione:");
+            bindingResult.getAllErrors().forEach(e -> System.out.println(" -> " + e));
+            model.addAttribute("categorie", this.categoriaService.findAll());
+            return "animaleEditForm";
+        }
+
+        // Salva nel database
+        Animale animaleSalvato = this.animaleService.save(animale);
+
+     // Salva immagine sul filesystem solo se è stata caricata
+        if (!multipartFile.isEmpty()) {
+            String uploadDir1 = "src/main/resources/static/images/animali-foto/" + animaleSalvato.getId();
+            String uploadDir2 = "target/classes/static/images/animali-foto/" + animaleSalvato.getId();
+
+            FileUploadUtil.saveFile(uploadDir1, animale.getFoto(), multipartFile);
+            FileUploadUtil.saveFile(uploadDir2, animale.getFoto(), multipartFile);
+        }
+
+
+        // Redirect alla pagina di dettaglio
+        return "redirect:/animale/" + animaleSalvato.getId();
+    }
+
+
+
+
 
 
     

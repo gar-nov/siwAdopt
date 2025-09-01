@@ -63,7 +63,9 @@
 
 		<!-- Immagine -->
 		<div th:if="${animale.foto}">
-    <img class="product-image" th:src="@{${animale.foto}}" />
+   <img class="product-image"
+     th:src="@{'/images/animali-foto/' + ${animale.id} + '/' + ${animale.foto}}" />
+
 </div>
 <div th:unless="${animale.foto}">
     <div class="product-image flex center">Nessuna foto disponibile</div>

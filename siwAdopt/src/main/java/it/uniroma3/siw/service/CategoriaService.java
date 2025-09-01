@@ -49,4 +49,11 @@ public class CategoriaService {
 	public Categoria findById(Long id) {
 		return categoriaRepository.findById(id).get();
 	}
+	
+	// gestione eliminazione categoria
+	
+	public void deleteById(Long id) {
+	    categoriaRepository.deleteById(id);  // elimina anche gli animali associati
+	}
+
 }

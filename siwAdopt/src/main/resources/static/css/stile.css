@@ -757,6 +757,33 @@ input[type="password"] {
   font-size: 0.8rem;
 }
 
+/***bottoni edit form***/
+.form-buttons {
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+/* Stesso stile per <a> che si comporta come un bottone */
+.button-link {
+    background-color: black;
+    color: white;
+    padding: 0.4em 1em;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #333;
+}
+
+
 
 /****** FOOTER PART ************/
 

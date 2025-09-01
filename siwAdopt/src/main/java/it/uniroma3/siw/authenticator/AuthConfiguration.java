@@ -49,7 +49,8 @@ public class AuthConfiguration {
                  .requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority(ADMIN_ROLE)
                  .requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority(ADMIN_ROLE)
                  .anyRequest().authenticated()
-             )
+            	
+            )
 
             .formLogin(form -> form
                 .loginPage("/login")

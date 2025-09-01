@@ -50,10 +50,11 @@
                 <div class="grid center" th:each="animale : ${animali}">
                     <a class="grid-button" th:href="@{'/animale/' + ${animale.id}}">&nbsp;</a>
 
-                    <div th:if="${animale.fotoImagePath}">
-                        <img class="product-image" th:src="@{${animale.fotoImagePath}}" />
+                    <div th:if="${animale.foto}">
+                        <img class="product-image"
+                         th:src="@{'/images/animali-foto/' + ${animale.id} + '/' + ${animale.foto}}" />
                     </div>
-                    <div th:unless="${animale.fotoImagePath}">
+                    <div th:unless="${animale.foto}">
                         <div class="product-image flex center">Nessuna foto disponibile</div>
                     </div>
 

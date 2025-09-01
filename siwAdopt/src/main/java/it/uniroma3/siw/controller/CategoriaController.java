@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +14,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import it.uniroma3.siw.model.Credentials;
 
 
 
 import it.uniroma3.siw.model.Animale;
 import it.uniroma3.siw.model.Categoria;
 import it.uniroma3.siw.service.CategoriaService;
+import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.validator.CategoriaValidator;
 import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
@@ -31,6 +35,9 @@ public class CategoriaController {
 	
 	@Autowired
 	private CategoriaValidator categoriaValidator;
+	
+	@Autowired
+	private CredentialsService credentialsService;
 	
 	
 
@@ -85,6 +92,24 @@ public class CategoriaController {
 		return "categoria";
 	}
 	
+	@GetMapping("/admin/categoria/delete/confirm/{id}")
+	public String confirmDeleteCategoria(@PathVariable("id") Long id, Model model) {
+	    // Recupera l'utente corrente
+	    UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+
+	    // Verifica che sia un admin
+	    if (!credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+	        return "unauthorized";  // pagina personalizzata
+	    }
+
+	    // Se è admin, elimina la categoria (e gli animali associati)
+	    this.categoriaService.deleteById(id);
+	    model.addAttribute("categorie", this.categoriaService.findAll());
+	    return "categorie";
+	}
+
+
 	
 	@PostConstruct
 	public void testLoaded() {

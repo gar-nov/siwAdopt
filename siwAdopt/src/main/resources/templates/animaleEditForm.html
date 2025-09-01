@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Animale</title>
+    <link rel="stylesheet" href="/css/stile.css"> 
+</head>
+
+<body class="login-page">
+
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <a href="/admin/indexAdmin">
+                    <img src="/images/logo.png" alt="Logo Adopt Me">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENITORE -->
+    <div class="content-wrapper">
+        <div class="grid-container-form-parent">
+            <div class="grid-container-form">
+                <div class="grid-form">
+
+                    <!-- TITOLO -->
+                    <div class="flex title">Modifica Animale</div>
+
+                    <!-- FORM -->
+                    <form th:action="@{'/animale/edit/' + ${animale.id}}" 
+                          method="POST" th:object="${animale}" 
+                          enctype="multipart/form-data">
+
+                        <div th:if="${#fields.hasGlobalErrors()}">
+                            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" th:style="'color:red'">...</p>
+                        </div>
+
+                        <table>
+                            <tr>
+                                <td>Nome:</td>
+                                <td><input type="text" th:field="*{nome}" /></td>
+                                <td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" th:style="'color:red'"></td>
+                            </tr>
+                            <tr>
+                                <td>Genere:</td>
+                                <td><input type="text" th:field="*{genere}" /></td>
+                                <td th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}" th:style="'color:red'"></td>
+                            </tr>
+                            <tr>
+                                <td>Età:</td>
+                                <td><input type="number" th:field="*{eta}" /></td>
+                                <td th:if="${#fields.hasErrors('eta')}" th:errors="*{eta}" th:style="'color:red'"></td>
+                            </tr>
+                            <tr>
+                                <td>Razza:</td>
+                                <td><input type="text" th:field="*{razza}" /></td>
+                                <td th:if="${#fields.hasErrors('razza')}" th:errors="*{razza}" th:style="'color:red'"></td>
+                            </tr>
+                            <tr>
+                                <td>Descrizione:</td>
+                                <td><textarea th:field="*{descrizione}"></textarea></td>
+                                <td th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}" th:style="'color:red'"></td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td><input type="email" th:field="*{email}" /></td>
+                                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:style="'color:red'"></td>
+                            </tr>
+                            <tr>
+                                <td>Telefono:</td>
+                                <td><input type="text" th:field="*{telefono}" /></td>
+                                <td th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" th:style="'color:red'"></td>
+                            </tr>
+
+                          <tr>
+						<td>Foto:</td>
+						<td><input type="file" name="image" accept="image/png, image/jpeg" /></td>
+					</tr>
+                        </table>
+<p th:if="${categorie != null}" th:text="'Categorie caricate: ' + ${#lists.size(categorie)}"></p>
+<p th:unless="${categorie != null}" style="color:red">⚠️ Nessuna categoria disponibile!</p>
+
+
+                        <!-- Selezione Categoria -->
+                        <fieldset>
+                            <legend>Seleziona Categoria</legend>
+
+                            <div th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}" style="color: red;"></div>
+
+                           <div class="grid-container-form">
+						<div class="grid-fit category" th:each="categoria : ${categorie}">
+
+							<label th:for="${'cat_' + categoria.id}" th:text="${categoria.nome}"></label>
+							<input type="radio" th:id="${'cat_' + categoria.id}" th:field="*{categoria}" name="categoria"
+								th:value="${categoria.id}" />
+						</div>
+					</div>
+                        </fieldset>
+
+                       <div class="form-buttons">
+                            <button type="submit" class="button-link">Salva modifiche</button>
+                           <a th:href="@{'/animale/' + ${animale.id}}" class="button-link">Annulla modifiche</a>
+                       </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div th:insert="~{fragments/base.html :: footer}"></div>
+
+</body>
+</html>
+

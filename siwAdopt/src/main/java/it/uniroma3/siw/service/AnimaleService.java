@@ -35,10 +35,22 @@ public class AnimaleService {
         return animaleRepository.save(animale);
     }
 
-    @Transactional
+    
+
     public boolean alreadyExists(Animale animale) {
-        return this.animaleRepository.existsByNomeAndUserAndCategoria(
-            animale.getNome(), animale.getUser(), animale.getCategoria());
+        Animale esistente = this.animaleRepository.findByNomeAndRazzaAndEtaAndCategoriaAndUser(
+            animale.getNome(),
+            animale.getRazza(),
+            animale.getEta(),
+            animale.getCategoria(),
+            animale.getUser()
+        );
+
+        if (esistente == null)
+            return false;
+
+        // Se è lo stesso animale (stesso ID), non è un duplicato
+        return !esistente.getId().equals(animale.getId());
     }
 
     public void deleteById(Long id) {

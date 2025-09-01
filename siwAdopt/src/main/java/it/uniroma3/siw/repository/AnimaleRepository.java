@@ -16,6 +16,15 @@ public interface AnimaleRepository extends CrudRepository<Animale,Long> {
 	List<Animale> findByUser(User user);
 
 	public boolean existsByNomeAndUserAndCategoria(String nome, User user, Categoria categoria);
+	
+	public Animale findByNomeAndRazzaAndEtaAndCategoriaAndUser(
+		    String nome,
+		    String razza,
+		    Integer eta,
+		    Categoria categoria,
+		    User user
+		);
+
 
 
 }
