@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+   
+    <link rel="stylesheet" href="/css/stile.css">
+</head>
+
+
+<body>
+	
+
+	<div class="flex-column" th:if="${user}">
+
+		<!-- Info utente -->
+		<div class="flex-column bg3">
+			<div class="flex title">
+				<div th:text="${user.nome} + ' ' + ${user.cognome}">Nome Cognome</div>
+			</div>
+
+			<!-- Mostra bottone modifica solo se ADMIN o stesso utente -->
+			<div th:if="(${user.id} == ${currentUserId}) OR (${#authorization.expression('hasAuthority(''ADMIN'')')})">
+				<a th:href="@{'/user/edit/form/' + ${user.id}}">modifica</a>
+			</div>
+		</div>
+
+		<!-- Titolo sezione animali -->
+		<div class="attached-info">
+			<div th:if="${user.id} == ${currentUserId}" class="flex title2">I tuoi animali in adozione:</div>
+			<div th:unless="${user.id} == ${currentUserId}" class="flex title2">Animali pubblicati da questo utente:</div>
+		</div>
+
+		<!-- Animali pubblicati -->
+		<div class="grid-container">
+
+			<!-- Card per ogni animale -->
+			<div class="grid center" th:each="animale : ${user.animali}">
+				<a class="grid-button" th:href="@{'/animale/' + ${animale.id}}"></a>
+
+				<!-- Immagine -->
+				<div th:if="${animale.foto}">
+					<img class="product-image" th:src="@{'/images/animali-foto/' + ${animale.id} + '/' + ${animale.foto}}" />
+				</div>
+				<div th:unless="${animale.foto}">
+					<div class="product-image flex center">Nessuna foto disponibile</div>
+				</div>
+
+				<!-- Info -->
+				<div class="title2" th:text="${animale.nome}">Nome</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Se utente non trovato -->
+	<div th:unless="${user}">
+		Utente non trovato!
+	</div>
+
+
+	</div>
+</body>
+
+</html>

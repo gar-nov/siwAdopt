@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<body>
+	
+
+	<div class="grid-container-fit">
+		<div class="grid-fit" th:each="user: ${users}">
+			<div class="flex title">
+				<a href="user.html" th:href="@{'/user/'+${user.id}}" th:text="${user.nome}+' '+${user.cognome}">
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+</body>
+
+</html>
