@@ -53,8 +53,20 @@
 
                    
         </div>
-
+     <div class="content-flex">
+<!--  Box Categorie -->
+     <div class="category-box">
+  <h3>Categorie</h3>
+  <ul>
+    <li><a th:href="@{/animali}">Tutti</a></li>
+    <li th:each="categoria : ${categorie}">
+      <a th:href="@{'/categoria/' + ${categoria.id}}"
+         th:text="${categoria.nome}">Categoria</a>
+    </li>
+  </ul>
+</div>
        <div class="grid-container">
+		    
 
 	<!-- Card per ogni animale -->
 	<div class="grid center" th:each="animale : ${animali}">
@@ -83,7 +95,7 @@
 
 	</div>
 </div>
-
+</div>
     </div>
 </body>
 

@@ -50,6 +50,7 @@ public class AnimaleController {
     @GetMapping("/animali")
     public String getListaAnimali(Model model) {
         model.addAttribute("animali", animaleService.findAll());
+        model.addAttribute("categorie", categoriaService.findAll());
         return "animali.html";
     }
     
