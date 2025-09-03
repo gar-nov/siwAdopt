@@ -66,7 +66,14 @@
         <!-- Info -->
         <div class="animal-info">
             <div class="title" th:text="${animale.nome}">Nome Animale</div>
+            <div class="title2">Categoria: 
+                <a th:href="@{'/categoria/' + ${animale.categoria.id}}"
+                th:text="${animale.categoria.nome}">Categoria</a>
+           </div>
             <div class="title2" th:text="${animale.descrizione}">Descrizione</div>
+            
+           
+
 
             <div class="title2">Venditore:
                 <a th:href="@{'/user/' + ${animale.user.id}}"

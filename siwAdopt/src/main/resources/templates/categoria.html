@@ -15,11 +15,23 @@
         <!-- Se la categoria esiste -->
         <div class="flex-column" th:if="${categoria}">
 			
-			 <div class="logo-categoria">
+		
+                 <!-- Admin -->
+              
+                    <div class="logo-categoria" sec:authorize="hasAuthority('ADMIN')">
                     <a href="/admin/indexAdmin">
-                        <img src="/images/logo.png" alt="Logo Adopt Me">
+                       <img src="/images/logo.png" alt="Logo Adopt Me">
                     </a>
-                </div>
+                    </div>
+           
+                          
+                 <!-- Utente -->
+        
+                    <div class="logo-categoria" sec:authorize="isAuthenticated() and !hasAuthority('ADMIN')">
+                    <a href="/user/indexU">
+                       <img src="/images/logo.png" alt="Logo Adopt Me">
+                    </a>
+                    </div>
 
             <div class="flex-column bg3">
                 <div class="flex">

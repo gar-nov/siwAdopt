@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="/css/stile.css"> 
+</head>
+<body>
+	
+	<div class="grid-container-form">
+		<div class="grid-form">
+			<div class="flex title">Modifica Utente
+			</div>
+			<form th:action="@{'/user/edit/'+${user.id}}" method="POST" th:object="${user}">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}" th:style="'color:red'">...</p>
+				</div>
+				<table>
+					<tr>
+						<td>Nome:
+						</td>
+						<td><input type="text" th:field="*{nome}" />
+						</td>
+						<td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" th:style="'color:red'">
+						</td>
+					</tr>
+					<tr>
+						<td>Cognome:
+						</td>
+						<td><input type="text" th:field="*{cognome}" />
+						</td>
+						<td th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}" th:style="'color:red'">
+						</td>
+					</tr>
+				</table>
+				
+				<div>
+					<button class="button" type="submit">Conferma</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	
+</body>
+
+</html>

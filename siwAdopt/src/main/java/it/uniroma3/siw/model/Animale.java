@@ -34,6 +34,7 @@ public class Animale {
     private Integer eta;
 
     @NotBlank
+    @Column(length = 1000)  // per modificare massimo caratt
     private String descrizione;
     
     @Column(nullable = true, length = 64)
