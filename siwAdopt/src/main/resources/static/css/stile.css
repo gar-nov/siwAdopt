@@ -444,9 +444,11 @@ body.my-animals-page {
   border-radius: 20px;
   padding: 1.5rem;
   font-size: 0.8rem;
+  overflow: hidden; /* ← AGGIUNTO per contenere l'immagine */
 
   transition: transform 0.2s ease, box-shadow 0.2s ease, outline-color 0.2s ease, outline-offset 0.2s ease;
 }
+
 
 /* Hover card */
 .animals-page .grid:hover {
@@ -466,11 +468,14 @@ body.my-animals-page {
 
 /* Immagine */
 .product-image {
-  width: 250px;
-  height: 300px;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
   object-fit: cover;
   border-radius: 20px;
+  display: block;
 }
+
 
 
 /******************    STICKY HEADER PER ANIMALI.HTML *************/
