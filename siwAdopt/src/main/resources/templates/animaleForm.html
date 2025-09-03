@@ -9,10 +9,12 @@
 
 <body class="login-page">
 
+
     <!-- HEADER -->
     <header class="navbar">
+
         <div class="navbar-content">
-            
+			
                  <!-- Admin -->
               
                     <div class="logo" sec:authorize="hasAuthority('ADMIN')">
@@ -28,7 +30,18 @@
                     <a href="/user/indexU">
                        <img src="/images/logo.png" alt="Logo Adopt Me">
                     </a>
-           </div>
+                    </div>
+                    
+                  <!-- Anonimo -->
+           
+                <div class="logo"  sec:authorize="isAnonymous()">
+                <a href="/">
+                   <img src="/images/logo.png" alt="Logo Adopt Me">
+                </a>
+               </div>
+               
+         </div>
+       
     </header>
 
     <!--  CONTENITORE che occupa tutto lo spazio e centra il form -->

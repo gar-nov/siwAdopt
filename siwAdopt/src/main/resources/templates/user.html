@@ -13,11 +13,25 @@
 
 	<div class="flex-column" th:if="${user}">
 		
-		      <div class="logo-categoria">
-                    <a href="/user/indexU">
-                        <img src="/images/logo.png" alt="Logo Adopt Me">
+		    
+                
+                 <!-- Admin -->
+              
+                    <div class="logo-categoria" sec:authorize="hasAuthority('ADMIN')">
+                    <a href="/admin/indexAdmin">
+                       <img src="/images/logo.png" alt="Logo Adopt Me">
                     </a>
-                </div>
+                    </div>
+           
+                          
+                 <!-- Utente -->
+        
+                    <div class="logo-categoria" sec:authorize="isAuthenticated() and !hasAuthority('ADMIN')">
+                    <a href="/user/indexU">
+                       <img src="/images/logo.png" alt="Logo Adopt Me">
+                    </a>
+                    </div>
+                    
 
 		<!-- Info utente -->
 		<div class="flex-column bg3">
