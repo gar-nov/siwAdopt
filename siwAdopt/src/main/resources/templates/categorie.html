@@ -36,9 +36,7 @@
             <!-- Card per ogni categoria -->
            <div class="grid center" th:each="categoria : ${categorie}">
               <a class="title" th:href="@{'/categoria/'+${categoria.id}}" th:text="${categoria.nome}"></a>
-
           </div>
-
         </div>
     </div>
 </body>
